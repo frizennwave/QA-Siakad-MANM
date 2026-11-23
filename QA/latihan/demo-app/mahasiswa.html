@@ -1,0 +1,18 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Data Mahasiswa - SIAKAD Mini</title><link rel="stylesheet" href="style.css"><script src="app.js"></script></head><body>
+<header><p class="brand">SIAKAD Mini</p><nav></nav></header><main><h1>Data Mahasiswa</h1><div id="pesan" hidden></div>
+<div class="toolbar"><div><label for="cari">Cari nama / NIM</label><input id="cari" placeholder="Ketik kata kunci..."></div>
+<a class="btn" id="btn-tambah" href="mahasiswa-tambah.html" hidden>+ Tambah Mahasiswa</a></div>
+<table><thead><tr><th>NIM</th><th>Nama</th><th>Program Studi</th></tr></thead><tbody id="tabel-mhs"></tbody></table>
+<p id="kosong" class="muted" hidden>Data tidak ditemukan.</p></main><footer>SIAKAD Mini &middot; aplikasi demo latihan QA</footer>
+<script>
+const s = requireLogin();
+if (s) {
+  if (s.role === 'admin') document.getElementById('btn-tambah').hidden = false;
+  if (new URLSearchParams(location.search).get('pesan') === 'tersimpan') alertBox(pesan, 'success', 'Data mahasiswa berhasil disimpan.');
+  const render = () => { const q = cari.value.toLowerCase();
+    const rows = store.mhs.filter(m => m.nama.toLowerCase().includes(q) || m.nim.includes(q));
+    document.getElementById('tabel-mhs').innerHTML = rows.map(m => '<tr><td>' + m.nim + '</td><td>' + m.nama.replace(/</g,'&lt;') + '</td><td>' + m.prodi + '</td></tr>').join('');
+    kosong.hidden = rows.length > 0; };
+  cari.addEventListener('input', render); render();
+}
+</script></body></html>

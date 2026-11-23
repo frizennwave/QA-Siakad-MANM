@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-11-23T12:43:13.057Z",
+  "base_url": "http://localhost",
+  "role": "MURID",
+  "method": "Playwright read-only crawler (link traversal, tanpa submit form)",
+  "max_pages": 30,
+  "skip_patterns": [
+    "logout",
+    "keluar",
+    "delete",
+    "hapus",
+    "destroy",
+    "remove"
+  ],
+  "unvisited_in_queue": [],
+  "pages": [
+    {
+      "page_id": "P001",
+      "role": "MURID",
+      "requested_url": "http://localhost/dashboard",
+      "discovery_status": "Discovered",
+      "http_status": 200,
+      "final_url": "http://localhost/dashboard",
+      "redirected": false,
+      "title": "Dashboard - Sistem Informasi Akademik MA Nur Muhammad",
+      "headings": [
+        "H1: Dashboard",
+        "H2: Welcome"
+      ],
+      "navigation": [
+        {
+          "text": "Sistem Informasi Akademik MA Nur Muhammad",
+          "href": "http://localhost/dashboard"
+        },
+        {
+          "text": "Dashboard",
+          "href": "http://localhost/dashboard"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "http://localhost/dashboard#fi-main-content"
+        },
+        {
+          "text": "Sistem Informasi Akademik MA Nur Muhammad",
+          "href": "http://localhost/dashboard"
+        },
+        {
+          "text": "Sistem Informasi Akademik MA Nur Muhammad",
+          "href": "http://localhost/dashboard"
+        },
+        {
+          "text": "Dashboard",
+          "href": "http://localhost/dashboard"
+        },
+        {
+          "text": "",
+          "href": "https://filamentphp.com/"
+        },
+        {
+          "text": "Documentation",
+          "href": "https://filamentphp.com/docs"
+        },
+        {
+          "text": "GitHub",
+          "href": "https://github.com/filamentphp/filament"
+        }
+      ],
+      "forms": [
+        {
+          "form_index": 1,
+          "id": null,
+          "method": "POST",
+          "action": "http://localhost/dashboard/logout",
+          "fields": [],
+          "buttons": [
+            "Sign out"
+          ]
+        },
+        {
+          "form_index": 2,
+          "id": null,
+          "method": "POST",
+          "action": "http://localhost/dashboard/logout",
+          "fields": [],
+          "buttons": [
+            "",
+            "Sign out"
+          ]
+        }
+      ],
+      "buttons": [
+        "Sign out"
+      ],
+      "tables": [],
+      "alerts": [],
+      "screenshot": "discovery/screenshots/P001_MURID_dashboard.png",
+      "console_errors": [],
+      "failed_requests": []
+    }
+  ]
+}

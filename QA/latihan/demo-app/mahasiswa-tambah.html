@@ -1,0 +1,21 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Tambah Mahasiswa - SIAKAD Mini</title><link rel="stylesheet" href="style.css"><script src="app.js"></script></head><body>
+<header><p class="brand">SIAKAD Mini</p><nav></nav></header><main><h1>Tambah Mahasiswa</h1><div id="pesan" hidden></div>
+<form id="form-mhs" novalidate>
+<label for="nim">NIM</label><input id="nim" name="nim" inputmode="numeric" placeholder="10 digit angka" required>
+<label for="nama">Nama Lengkap</label><input id="nama" name="nama" maxlength="100" required>
+<label for="prodi">Program Studi</label><select id="prodi" name="prodi" required><option value="">-- pilih --</option><option>Teknik Informatika</option><option>Sistem Informasi</option></select>
+<button type="submit" id="btn-simpan">Simpan</button> <a class="btn secondary" href="mahasiswa.html">Batal</a></form></main><footer>SIAKAD Mini &middot; aplikasi demo latihan QA</footer>
+<script>
+const s = requireLogin();
+const form = document.getElementById('form-mhs');
+if (s && s.role !== 'admin') { form.remove(); alertBox(pesan, 'error', 'Akses ditolak. Halaman ini hanya untuk Admin.'); }
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const d = { nim: nim.value.trim(), nama: nama.value.trim(), prodi: prodi.value };
+  if (!d.nim || !d.nama || !d.prodi) return alertBox(pesan, 'error', 'NIM, Nama, dan Program Studi wajib diisi.');
+  if (!/^\d{9,10}$/.test(d.nim)) return alertBox(pesan, 'error', 'NIM harus 10 digit angka.');
+  const all = store.mhs;
+  if (all.some(m => m.nim === d.nim)) return alertBox(pesan, 'error', 'NIM sudah terdaftar.');
+  all.push(d); store.mhs = all; location.href = 'mahasiswa.html?pesan=tersimpan';
+});
+</script></body></html>

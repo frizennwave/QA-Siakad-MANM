@@ -1,0 +1,25 @@
+{
+  "name": "qa-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Workspace QA: Application Discovery + Website QA Automation (Claude Code + Playwright)",
+  "scripts": {
+    "skills:install": "node scripts/install-skills.js",
+    "setup": "npm install && npx playwright install chromium",
+    "demo": "node latihan/server.js",
+    "auth:save": "node scripts/save-auth.js",
+    "discover": "node scripts/discover.js",
+    "test": "playwright test",
+    "test:env": "playwright test tests/00-environment.spec.js",
+    "test:latihan": "playwright test tests/latihan",
+    "test:headed": "playwright test --headed",
+    "report:html": "playwright show-report results/html",
+    "clean": "node scripts/clean.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  },
+  "engines": {
+    "node": ">=20.6"
+  }
+}

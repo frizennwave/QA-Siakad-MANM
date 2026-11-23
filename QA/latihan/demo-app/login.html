@@ -1,0 +1,20 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Login - SIAKAD Mini</title><link rel="stylesheet" href="style.css"><script src="app.js"></script></head><body>
+<header><p class="brand">SIAKAD Mini</p><nav></nav></header><main><h1>Login</h1><div id="pesan" hidden></div>
+<form id="form-login" novalidate>
+<label for="username">Username</label><input id="username" name="username" autocomplete="username" required>
+<label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required>
+<button type="submit" id="btn-login">Masuk</button></form></main><footer>SIAKAD Mini &middot; aplikasi demo latihan QA</footer>
+<script>
+const p = document.getElementById('pesan');
+if (new URLSearchParams(location.search).get('pesan') === 'login-dulu') alertBox(p, 'error', 'Silakan login terlebih dahulu.');
+if (store.session) location.href = 'dashboard.html';
+document.getElementById('form-login').addEventListener('submit', e => {
+  e.preventDefault();
+  const u = username.value.trim(), pw = password.value;
+  if (!u || !pw) return alertBox(p, 'error', 'Username dan password wajib diisi.');
+  const acc = USERS[u];
+  if (!acc || acc.pass !== pw) return alertBox(p, 'error', 'Username atau password salah.');
+  store.session = { username: u, role: acc.role, nama: acc.nama };
+  location.href = 'dashboard.html';
+});
+</script></body></html>

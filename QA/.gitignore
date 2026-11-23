@@ -1,0 +1,11 @@
+node_modules/
+.env
+auth/
+results/
+logs/
+archive/
+# Hasil di bawah boleh di-commit jika tim menyetujui:
+# discovery/  screenshots/  reports/
+
+# Playwright auth storageState (credentials/session)
+auth/
