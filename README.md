@@ -75,6 +75,58 @@ Folder tersebut digunakan untuk menyimpan dokumen yang berkaitan dengan perancan
 
 ---
 
+## Quality Assurance (QA)
+
+Pengujian kualitas dilakukan pada antarmuka **web admin (panel Filament di `/dashboard`)** memakai Playwright dan Claude Code. Seluruh berkas QA berada di folder [`QA/`](./QA).
+
+**Dikerjakan oleh:** `<NAMA LENGKAP>` (`<NIM>`)
+
+### Dokumen hasil QA
+
+| Dokumen | Lokasi |
+|---|---|
+| Laporan QA (PDF) | [`QA/reports/Website_QA_Testing_Report.pdf`](./QA/reports/Website_QA_Testing_Report.pdf) |
+| Panduan pengguna (PDF) | [`QA/reports/Website_User_Tutorial.pdf`](./QA/reports/Website_User_Tutorial.pdf) |
+| Katalog test case | [`QA/reports/Test_Case_Catalogue.xlsx`](./QA/reports/Test_Case_Catalogue.xlsx) |
+| Daftar bug | [`QA/bugs/bugs.json`](./QA/bugs/bugs.json) |
+| Handover QA | [`QA/discovery/documents/QA_Handover.md`](./QA/discovery/documents/QA_Handover.md) |
+| Test otomatis | [`QA/tests/`](./QA/tests) |
+
+### Ringkasan hasil
+
+Sumber: `results/test-results.json` pada run terakhir (lingkungan lokal, 23 November 2026).
+
+| Metrik | Nilai |
+|---|---|
+| Test case terdaftar | 15 |
+| Dieksekusi (PASS + FAIL) | 13 |
+| PASS / FAIL / BLOCKED | 13 / 0 / 2 |
+| Pass Rate | 100% (denominator 13) |
+| Bug aplikasi terkonfirmasi | 0 |
+
+Cakupan: autentikasi, navigasi sidebar, kontrol akses antar-role (Admin, Guru, Murid), serta tampilan Master Data dan Student Enrollment. Pass Rate 100% berlaku untuk 13 test read-only dan **tidak** berarti aplikasi bebas bug.
+
+**Di luar scope:** REST API (belum selesai), aplikasi Mobile, operasi tulis (create, edit, delete, bulk delete, ditandai BLOCKED), serta pengujian performa dan keamanan mendalam.
+
+**Temuan proses:** pada run awal 3 test gagal karena login Admin berulang (diduga pembatasan percobaan login Filament). Ini bukan bug aplikasi dan sudah diperbaiki di sisi test dengan sesi login tersimpan. Detailnya ada di laporan QA.
+
+### Menjalankan ulang test
+
+Prasyarat: Node.js 20.6+, aplikasi berjalan di `http://localhost` (mis. `./vendor/bin/sail up -d`).
+
+```bash
+cd QA
+npm install
+npx playwright install chromium
+cp .env.example .env        # isi BASE_URL dan akun uji tiap role
+npm run test:env            # validasi environment
+npm test                    # jalankan semua test
+```
+
+Kredensial hanya di `.env` lokal. Berkas `.env`, `auth/`, `results/`, dan `archive/` tidak di-commit.
+
+---
+
 ## Status
 
 🚧 **Development**
